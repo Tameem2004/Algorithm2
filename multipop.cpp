@@ -48,6 +48,10 @@ int main()
                             cout << "Stack Is Emptied" << endl;
                         }
                     }
+                    else
+                    {
+                        cout << "stack underflow" << endl;
+                    }
                     break;
             case 5:
                     while(!st.empty())
