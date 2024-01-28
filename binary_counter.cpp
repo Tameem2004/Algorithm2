@@ -1,26 +1,30 @@
 #include<iostream>
+#include <vector>
 using namespace std;
 
-void increment(int A[],int k)
-{
-    int i=0;
-    do
-    {
-        A[i]=0;
-        i+=1;
+void increment(vector<int>& A, int k) {
+    int i = 0;
+    for (int j =k-1; j >=0; j--) {
+        cout << A[j];
     }
-    while(i<k&&A[i]==1);
-    if(i<k)
+    cout<<endl;
+    while (i < k && A[i] == 1)
     {
-        A[i]=1;
+        A[i] = 0;
+        i += 1;
     }
-    cout<<A[i];
+    if (i < k) {
+        A[i] = 1;
+    }
 }
-int main()
-{
+
+int main() {
     int k;
-    cout<<"Enter Size Of Array"<<endl;
-    cin>>k;
-    int A[k];
-    increment(A,k);
+
+    cout << "Enter Size Of Array" << endl;
+    cin >> k;
+    vector<int> A(k, 0);
+    for (int count = 0; count < (1 << k); count++) {
+        increment(A,k);
+    }
 }
