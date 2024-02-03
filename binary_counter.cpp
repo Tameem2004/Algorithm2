@@ -24,7 +24,6 @@ int main() {
     cout << "Enter Size Of Array" << endl;
     cin >> k;
     vector<int> A(k, 0);
-    printf("lol");
     for (int count = 0; count < (1 << k); count++) {
         increment(A,k);
     }
