@@ -120,7 +120,7 @@ int link_inversion_preorder_binarytree(Node *pres)
             }
             else if(prev!=NULL&&prev->tag==0)
             {
-                if(prev==NULL&&pres->right==NULL)
+                if(prev==NULL&&pres->left==NULL&&pres->right==NULL)
                 {
                     flag=2;
                 }
