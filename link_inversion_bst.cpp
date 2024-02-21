@@ -17,29 +17,28 @@ Node* creatnewNode(int data)
     return newNode;
 }
 
-struct Node* insert(struct Node* pres, int data){
-    if(pres == NULL)
-	{
-    pres = creatnewNode(data);
-    }
-    else
-	{
-        if(data < pres->data)
-            pres->left = insert(pres->left, data);
+
+Node* insert(Node* root, int data){
+    if(root == NULL){
+        root = creatnewNode(data);
+        }
+    else{
+        if(data < root->data)
+            root->left = insert(root->left, data);
         else
-            pres->right = insert(pres->right, data);
+            root->right = insert(root->right, data);
     }
-    return pres;
+    return root;
 }
 
 void visit_pres(int data) {
     cout << data << " ";
 }
 
-int link_inversion_inorder_bst(Node *pres)
+Node* link_inversion_inorder_bst(Node *pres)
 {
     cout<<"Link Inversion Inorder:-"<<endl;
-    Node* prev,*tmp;
+    Node *prev,*tmp;
     prev=NULL;
     int flag=0;
     if(pres==NULL)
@@ -61,10 +60,10 @@ int link_inversion_inorder_bst(Node *pres)
             if(flag!=2)
             {
                 visit_pres(pres->data);
-            }
-            if(prev==NULL&&pres->right==NULL)
-            {
-                flag=2;
+                if(prev==NULL&&pres->right==NULL)
+                {
+                    flag=2;
+                }
             }
             if(pres->right!=NULL&&flag!=2)
             {
@@ -97,12 +96,12 @@ int link_inversion_inorder_bst(Node *pres)
     cout<<endl;
 }
 
-int link_inversion_preorder_bst(Node *pres)
+Node* link_inversion_preorder_bst(Node *pres)
 {
     cout<<"Link Inversion Preorder:-"<<endl;
-    Node* prev,*tmp;
+    Node *prev,*tmp;
     prev=NULL;
-    int flag=0;
+    int flag=0; 
     if(pres==NULL)
     {
         return 0;
@@ -161,10 +160,11 @@ int link_inversion_preorder_bst(Node *pres)
     while(prev!=NULL||flag!=2);
     cout<<endl;
 }
-int link_inversion_postorder_bst(Node *pres)
+
+Node* link_inversion_postorder_bst(Node *pres)
 {
     cout<<"Link Inversion Postorder:-"<<endl;
-    Node* prev,*tmp;
+    Node *prev,*tmp;
     prev=NULL;
     int flag=0;
     if(pres==NULL)
@@ -223,17 +223,17 @@ int link_inversion_postorder_bst(Node *pres)
 int main()
 {
 	int size,data;
-    Node *pres=NULL;
+    Node *root=NULL;
     cout<<"Enter size for BST"<<endl;
     cin>>size;
     for(int i=0;i<size;i++)
     {
     	cout<<"Enter data to be added: "<<endl;
     	cin>>data;
-    	pres = insert(pres, data);
+    	root = insert(root, data);
 	}
-    link_inversion_inorder_bst(pres);
-    link_inversion_preorder_bst(pres);
-    link_inversion_postorder_bst(pres);
+    link_inversion_inorder_bst(root);
+    link_inversion_preorder_bst(root);
+    link_inversion_postorder_bst(root);
     return 0;
 }
