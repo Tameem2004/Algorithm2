@@ -4,10 +4,10 @@ using namespace std;
 
 int main()
 {
-    int ch,limit,item;
+    int ch,limit,item,arr[100],i;
     stack<int>st;
     cout<<"Enter Your Choice"<<endl;
-    cout<<"\nfor exit press: 1"<<"\nfor push press: 2"<<"\nfor pop press: 3"<<"\nfor multipop press: 4"<<"\nfor show press: 5"<<endl;
+    cout<<"\nfor exit press: 1"<<"\nfor push press: 2"<<"\nfor pop press: 3"<<"\nfor multipop press: 4"<<endl;
     while(1)
     {
         cout<<"\nenter your choice"<<endl;
@@ -40,6 +40,7 @@ int main()
                     {
                         while (limit > 0 && !st.empty())
                         {
+                            cout<<st.top()<<" ";
                             st.pop();
                             limit--;
                         }
@@ -52,18 +53,7 @@ int main()
                     {
                         cout << "stack underflow" << endl;
                     }
-                    break;
-            case 5:
-                    while(!st.empty())
-                    {
-                        cout<<st.top()<<" ";
-                        st.pop();
-                    }
-                    if (st.empty())
-                    {
-                        cout << "Stack Is Empty" << endl;
-                    }
-                    break;                                     
+                    break;          
             default :
                     cout<<"you give a invalid choice"<<endl;
         }
