@@ -1,44 +1,67 @@
-#include <iostream>
+#include <iostream> 
+using namespace std; 
 
-using namespace std;
+int *multiply(int A[], int B[], int m, int n) 
+{ 
+    int *prod = new int[m+n-1]; 
 
-int polynomialEvaluation(int x, int n,int A[])
-{
-    int i=n;
-    int P=A[i];
-    while (i>0)
+    for (int i = 0; i<m+n-1; i++) 
+        prod[i] = 0; 
+
+    for (int i=0; i<m; i++) 
+    { 
+        
+        for (int j=0; j<n; j++) 
+        {
+            prod[i+j] += A[i]*B[j];
+        } 
+    } 
+
+    return prod; 
+} 
+
+void printPoly(int poly[], int n) 
+{ 
+	for (int i=0; i<n; i++) 
+	{ 
+        if(poly[i]<0)
+        cout<<" "<<poly[i]<<"x^"<<i;
+        else if(i==0)
+        cout<<poly[i]<<"x^"<<i;
+        else
+        cout<<" + "<<poly[i]<<"x^"<<i;
+	} 
+} 
+
+int main() 
+{ 
+
+    int n, m, i;
+    cout<<"Enter number of terms of 1st equation: ";
+    cin>>n;
+    cout<<"Enter number of terms of 2nd equation: ";
+    cin>>m;
+	int A[n], B[m]; 
+    cout<<"\nEnter coefficients of 1st equation: ";
+    for(i=0;i<n;i++)
     {
-        P=P*x + A[--i];
-    }
-    return P;
-}
-
-int main()
-{
-    int x, n, i;
-    cout << "\nEnter The Value Of x of The Polynomial P(x) : ";
-    cin >> x;
-    cout << "\nEnter The Highest Power Of The Polynomial : ";
-    cin >> n;
-    int A[n+1];
-    cout<<"Enter The Coefficient Matrix : "<<endl;
-    for (i = 0; i <= n; i++)
-    {
-        cout<<"A("<<i<<") : ";
         cin>>A[i];
     }
-    cout<<"\nThe Equation: ";
-    for(i=n; i>=0; i--)
+    cout<<"\nEnter coefficients of 2nd equation: ";
+    for(i=0;i<m;i++)
     {
-        if(A[i]<0)
-        cout<<" "<<A[i]<<"x^"<<i;
-        else if(i==n)
-        cout<<A[i]<<"x^"<<i;
-        else
-        cout<<" + "<<A[i]<<"x^"<<i;
+        cin>>B[i];
     }
-    int result = polynomialEvaluation(x, n,A);
-    cout<<"\nThe Result of P("<<x<<") With Highest Power "<<n<<" is : ";
-    cout << result << endl;
-    return 0;
+
+	cout << "First polynomial is: "; 
+	printPoly(A, n); 
+	cout <<endl<< "Second polynomial is: "; 
+	printPoly(B, m); 
+
+	int *prod = multiply(A, B, n, m); 
+
+	cout <<endl<< "Product polynomial is: "; 
+	printPoly(prod, m+n-1); 
+
+	return 0; 
 }
