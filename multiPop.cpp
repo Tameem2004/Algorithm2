@@ -53,13 +53,13 @@ public:
 int main()
 {
     multi A;
-    char ch='y';
+    int ch;
     int i;
-    while (ch=='Y'||ch=='y')
+    while (1)
     {
         cout<<"What You Want To Do?:\n1. Push Data\t2. Pop Once\n3. Multiple Pop\t4. See The Top\n\t5.Exit"<<endl;
-        cin>>i;
-        switch (i)
+        cin>>ch;
+        switch(ch)
         {
         case 1:
             A.setTop();
@@ -75,14 +75,13 @@ int main()
         case 4:
             A.getTop();
             break;
-        
+        case 5:
+            exit(1);
+            break;
         default:
             cout<<"Thank you!"<<endl;
             return 0;
         }
-        cout<<"Want To Continue?(Y/N): "<<endl;
-        cin>>ch;
     }
-    cout<<"Thank you!"<<endl;
     return 0;
 }
