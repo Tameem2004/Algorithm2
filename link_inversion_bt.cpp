@@ -21,10 +21,10 @@ void visit_pres(int data) {
     cout << data << " ";
 }
 
-int link_inversion_inorder_binarytree(Node *pres)
+Node* link_inversion_inorder_binarytree(Node *pres)
 {
     cout<<"Link Inversion Inorder:-"<<endl;
-    Node* prev,*tmp;
+    Node *prev,*tmp;
     prev=NULL;
     int flag=0;
     if(pres==NULL)
@@ -46,10 +46,10 @@ int link_inversion_inorder_binarytree(Node *pres)
             if(flag!=2)
             {
                 visit_pres(pres->data);
-            }
-            if(prev==NULL&&pres->right==NULL)
-            {
-                flag=2;
+                if(prev==NULL&&pres->right==NULL)
+                {
+                    flag=2;
+                }
             }
             if(pres->right!=NULL&&flag!=2)
             {
@@ -82,12 +82,12 @@ int link_inversion_inorder_binarytree(Node *pres)
     cout<<endl;
 }
 
-int link_inversion_preorder_binarytree(Node *pres)
+Node* link_inversion_preorder_binarytree(Node *pres)
 {
     cout<<"Link Inversion Preorder:-"<<endl;
-    Node* prev,*tmp;
+    Node *prev,*tmp;
     prev=NULL;
-    int flag=0;
+    int flag=0; 
     if(pres==NULL)
     {
         return 0;
@@ -146,10 +146,11 @@ int link_inversion_preorder_binarytree(Node *pres)
     while(prev!=NULL||flag!=2);
     cout<<endl;
 }
-int link_inversion_postorder_binarytree(Node *pres)
+
+Node* link_inversion_postorder_binarytree(Node *pres)
 {
     cout<<"Link Inversion Postorder:-"<<endl;
-    Node* prev,*tmp;
+    Node *prev,*tmp;
     prev=NULL;
     int flag=0;
     if(pres==NULL)
@@ -207,16 +208,38 @@ int link_inversion_postorder_binarytree(Node *pres)
 
 int main()
 {
-    Node *pres=NULL;
-    pres=creatnewNode(5);
-    pres->left=creatnewNode(7);
-    pres->right=creatnewNode(11);
-    pres->left->left=creatnewNode(2);
-    pres->left->right=creatnewNode(3);
-    pres->left->right->left=creatnewNode(12);
-    pres->right->right=creatnewNode(1);
-    link_inversion_inorder_binarytree(pres);
-    link_inversion_preorder_binarytree(pres);
-    link_inversion_postorder_binarytree(pres);
+    int ch;
+    Node *root=NULL;
+    root=creatnewNode(5);
+    root->left=creatnewNode(7);
+    root->right=creatnewNode(11);
+    root->left->left=creatnewNode(2);
+    root->left->right=creatnewNode(3);
+    root->left->right->left=creatnewNode(12);
+    root->right->right=creatnewNode(1);
+    while(1)
+    {
+        cout<<"\nfor exit press: 0"<<"\nfor inorder: 1"<<"\nfor pre order: 2"<<"\nfor post order: 3"<<endl;
+        cout<<"Enter Your Choice"<<endl;
+        cin>>ch;
+        switch(ch)
+        {
+            case 0:
+                exit(1);
+                break;
+            case 1:
+                link_inversion_inorder_binarytree(root);
+                break;
+            case 2:
+                link_inversion_preorder_binarytree(root);
+                break;
+            case 3:
+                link_inversion_postorder_binarytree(root);
+                break;
+            default :
+                printf("you give a invalid choice");
+                break;
+        }
+    }
     return 0;
 }
