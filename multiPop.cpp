@@ -79,7 +79,6 @@ int main()
             exit(1);
             break;
         default:
-            cout<<"Thank you!"<<endl;
             return 0;
         }
     }
