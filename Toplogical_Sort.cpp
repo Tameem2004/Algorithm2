@@ -78,7 +78,7 @@ class graph{
         }
         void printTropoSort(){
             for(int i=0;i<n;i++){
-                cout<<s.top().name<<"hi\t";
+                cout<<s.top().name<<"\t";
                 temp.push(s.top());
                 s.pop();
             }
